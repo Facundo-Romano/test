@@ -1,0 +1,38 @@
+[
+  {
+    "id": "747ba73e-10a5-4e3d-ae5a-ca23d85ba273",
+    "title": "Cotizaciones",
+    "description": "+20.1% desde el mes pasado",
+    "value": 45,
+    "type": "user",
+    "createdAt": "2025-03-12T15:37:57.798Z",
+    "updatedAt": "2025-03-12T15:37:57.798Z"
+  },
+  {
+    "id": "545e15b3-f2d0-45c0-857f-cdcc006e3267",
+    "title": "Pólizas Activas",
+    "description": "+10.1% desde el mes pasado",
+    "value": 2350,
+    "type": "admin",
+    "createdAt": "2025-03-12T15:37:57.798Z",
+    "updatedAt": "2025-03-12T15:37:57.798Z"
+  },
+  {
+    "id": "4222eabc-20ac-4384-bc57-1b788800e15e",
+    "title": "Siniestros",
+    "description": "+19% desde el mes pasado",
+    "value": 89,
+    "type": "claim",
+    "createdAt": "2025-03-12T15:37:57.798Z",
+    "updatedAt": "2025-03-12T15:37:57.798Z"
+  },
+  {
+    "id": "abee8b13-bb69-464b-ab1c-132ef062fb8a",
+    "title": "Activos Ahora",
+    "description": "+201 desde la última hora",
+    "value": 573,
+    "type": "activity",
+    "createdAt": "2025-03-12T15:37:57.798Z",
+    "updatedAt": "2025-03-12T15:37:57.798Z"
+  }
+]

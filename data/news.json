@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cc84cc63-ae96-45df-83ea-914d9b5615f5",
+    "title": "Actualización del sistema a v2.5",
+    "type": "Sistema",
+    "createdBy": "Admin",
+    "status": "complete",
+    "createdAt": "2025-03-05T03:00:00.000Z",
+    "updatedAt": "2025-03-12T15:37:57.842Z"
+  },
+  {
+    "id": "c2c08e41-17ba-4fe2-91fc-38f36bd34d70",
+    "title": "Nuevas funcionalidades de reportes",
+    "type": "Funcionalidad",
+    "createdBy": "Desarrollo",
+    "status": "inProgress",
+    "createdAt": "2025-03-04T03:00:00.000Z",
+    "updatedAt": "2025-03-12T15:37:57.842Z"
+  },
+  {
+    "id": "ba061bf5-72f6-470c-85a5-e5840f24bdc6",
+    "title": "Mentenimiento programado",
+    "type": "Mantenimiento",
+    "createdBy": "Soporte",
+    "status": "pending",
+    "createdAt": "2025-03-03T03:00:00.000Z",
+    "updatedAt": "2025-03-12T15:37:57.842Z"
+  }
+]

@@ -1,0 +1,45 @@
+name: Deploy NestJS App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/safer-be:$GITHUB_SHA .
+
+      - name: Log in to Docker Hub
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/safer-be:$GITHUB_SHA
+
+      - name: SSH into server and deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 5164
+          script: |
+            export GITHUB_SHA="${{ github.sha }}"
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/safer-be:$GITHUB_SHA
+            docker stop safer-be || true
+            docker rm safer-be || true
+            docker run -d -p ${{ secrets.PORT }}:${{ secrets.PORT }} --name safer-be -e PORT=${{ secrets.PORT }} -e NODE_ENV=production -e JWT_SECRET=${{ secrets.JWT_SECRET }} -e JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }} -e IA_BROKER_API_URL=${{ secrets.IA_BROKER_API_URL }} -e BASE_URL=${{ secrets.BASE_URL }} ${{ secrets.DOCKERHUB_USERNAME }}/safer-be:$GITHUB_SHA
+            docker image prune -a
+            
+        env:
+          GITHUB_SHA: ${{ github.sha }}

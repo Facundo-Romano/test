@@ -1,0 +1,25 @@
+[
+  {
+    "id": "e737899c-dfc6-48bc-a067-0e27b643143b",
+    "username": "admin",
+    "email": "admin@example.com",
+    "password": "$2b$10$kpCqbiphWDaVgVBuNmybfO7HZ5I.ElD.TAA3WAuTtSzXUNX6hPb76",
+    "roles": [
+      "admin"
+    ],
+    "createdAt": "2025-03-12T15:37:59.103Z",
+    "updatedAt": "2025-03-12T15:37:59.103Z"
+  },
+  {
+    "id": "6ad1ff7b-5bdc-4f1b-ac79-9ff814a7b00d",
+    "username": "facu",
+    "email": "facuromano121299@gmail.com",
+    "password": "$2b$10$/3MP9gbrilOpYxYUsy/YzOFAy5/9IjB77dcH5xobSvEdnYYgGzoIK",
+    "roles": [
+      "user",
+      "admin"
+    ],
+    "createdAt": "2025-03-12T17:32:50.885Z",
+    "updatedAt": "2025-03-12T17:32:50.885Z"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ab494252-cc4b-4f4e-9707-b5fbe5715d5b",
+    "title": "Actualización del sistema",
+    "description": "Actualización del sistema a v2.5",
+    "createdAt": "2025-03-12T15:37:57.870Z",
+    "updatedAt": "2025-03-12T15:37:57.870Z"
+  },
+  {
+    "id": "dee6e35c-b5ad-4ab2-ac57-e1ee96319991",
+    "title": "Nueva póliza creada",
+    "description": "Se ha creado una nueva póliza #12345",
+    "createdAt": "2025-03-12T15:37:57.870Z",
+    "updatedAt": "2025-03-12T15:37:57.870Z"
+  },
+  {
+    "id": "22736eb7-fd33-4ba6-b215-b0c27af45d64",
+    "title": "Siniestro reportado",
+    "description": "Se ha reportado un nuevo siniestro #S-789",
+    "createdAt": "2025-03-12T15:37:57.870Z",
+    "updatedAt": "2025-03-12T15:37:57.870Z"
+  }
+]

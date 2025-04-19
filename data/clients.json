@@ -1,0 +1,20 @@
+[
+  {
+    "id": "038bd2ea-8e9f-414a-8e3c-7a4c145b5882",
+    "name": "client 1",
+    "email": "clietn1@example.com",
+    "phoneNumber": "1234567890",
+    "status": "active",
+    "createdAt": "2025-03-19T18:59:32.088Z",
+    "updatedAt": "2025-03-19T18:59:32.088Z"
+  },
+  {
+    "id": "f3197aec-92e0-4bfc-9949-454f50404b8b",
+    "name": "client 2",
+    "email": "client2@example.com",
+    "phoneNumber": "1234567890",
+    "status": "active",
+    "createdAt": "2025-03-19T18:59:32.091Z",
+    "updatedAt": "2025-03-19T18:59:32.091Z"
+  }
+]
