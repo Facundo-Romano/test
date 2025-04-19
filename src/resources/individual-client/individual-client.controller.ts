@@ -5,19 +5,19 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { BaseResponse } from 'src/common/classes';
 import { UserRole } from '../users/user.entity';
 import { IndividualClientResponseDto } from './dto/individual-client-response.dto';
-import { IndividualClient } from './individual-client.entity';
 import { CreateIndividualClientDto } from './dto/create-individual-client.dto';
 import { UpdateIndividualClientDto } from './dto/update-individual-client.dto';
 import { IndividualClientService } from './individual-client.service';
+import { IndividualClient } from './individual-client.entity';
 
 @ApiTags('Individual-Client')
-@Controller('api/ClientesPersona')
+@Controller('individual-client')
 export class IndividualClientController {
   constructor(private readonly individualClientService: IndividualClientService) {}
 
-  @ApiOperation({ summary: 'Obtención de cliente individual por id' })
+  @ApiOperation({ summary: 'Obtención de cliente persona por id' })
   @ApiParam({ name: 'id', description: 'ID del cliente' })
-  @ApiResponse({ status: 200, description: 'Datos del cliente individual.', type: [IndividualClientResponseDto] })
+  @ApiResponse({ status: 200, description: 'Datos del cliente persona.', type: [IndividualClientResponseDto] })
   @Get(':id')
   async findById(@Param('id') id: string): Promise<BaseResponse<IndividualClient>> {
     try {
@@ -28,14 +28,14 @@ export class IndividualClientController {
         data: individualClient
       };
     } catch (error) {
-      console.error('Error al encontrar el cliente individual:', error);
-      throw new InternalServerErrorException('Ocurrió un error inesperado al encontrar el cliente individual.');
+      console.error('Error al encontrar el cliente persona:', error);
+      throw new InternalServerErrorException('Ocurrió un error inesperado al encontrar el cliente persona.');
     }
   }
 
-  @ApiOperation({ summary: 'Creación de cliente individual' })
+  @ApiOperation({ summary: 'Creación de cliente persona' })
   @ApiBody({ type: CreateIndividualClientDto })
-  @ApiResponse({ status: 201, description: 'Cliente individual creado exitosamente.', type: IndividualClientResponseDto })
+  @ApiResponse({ status: 201, description: 'Cliente persona creado exitosamente.', type: IndividualClientResponseDto })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @UseGuards(RolesGuard)
@@ -49,15 +49,15 @@ export class IndividualClientController {
         data: individualClient
       };
     } catch (error) {
-      console.error('Error al crear el cliente individual:', error);
-      throw new InternalServerErrorException('Ocurrió un error inesperado al crear el cliente individual.');
+      console.error('Error al crear el cliente persona:', error);
+      throw new InternalServerErrorException('Ocurrió un error inesperado al crear el cliente persona.');
     }
   }
 
-  @ApiOperation({ summary: 'Modificación del cliente individual' })
+  @ApiOperation({ summary: 'Modificación del cliente persona' })
   @ApiBody({ type: UpdateIndividualClientDto })
-  @ApiParam({ name: 'id', description: 'ID del cliente individual a modificar' })
-  @ApiResponse({ status: 200, description: 'Cliente individual modificado exitosamente.', type: IndividualClientResponseDto })
+  @ApiParam({ name: 'id', description: 'ID del cliente persona a modificar' })
+  @ApiResponse({ status: 200, description: 'Cliente persona modificado exitosamente.', type: IndividualClientResponseDto })
   @Put(':id')
   @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
@@ -70,13 +70,13 @@ export class IndividualClientController {
         data: null
       };
     } catch (error) {
-      console.error('Error al modificar el cliente individual:', error);
-      throw new InternalServerErrorException('Ocurrió un error inesperado al modificar el cliente individual.');
+      console.error('Error al modificar el cliente persona:', error);
+      throw new InternalServerErrorException('Ocurrió un error inesperado al modificar el cliente persona.');
     }
   }
 
-  @ApiOperation({ summary: 'Eliminación de cliente individual' })
-  @ApiParam({ name: 'id', description: 'ID del cliente individual a eliminar' })
+  @ApiOperation({ summary: 'Eliminación de cliente persona' })
+  @ApiParam({ name: 'id', description: 'ID del cliente persona a eliminar' })
   @ApiResponse({ status: 200, description: 'Cliente eliminado exitosamente.'})
   @Delete(':id')
   @UseGuards(RolesGuard)
@@ -90,8 +90,8 @@ export class IndividualClientController {
         data: null
       };
     } catch (error) {
-      console.error('Error al eliminar el cliente individual:', error);
-      throw new InternalServerErrorException('Ocurrió un error inesperado al eliminar el cliente individual.');
+      console.error('Error al eliminar el cliente persona:', error);
+      throw new InternalServerErrorException('Ocurrió un error inesperado al eliminar el cliente persona.');
     }
   }
 }
