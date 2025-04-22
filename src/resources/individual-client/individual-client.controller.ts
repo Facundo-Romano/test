@@ -1,13 +1,13 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { BaseResponse } from 'src/common/classes';
 import { UserRole } from '../users/user.entity';
-import { IndividualClientResponseDto } from './dto/individual-client-response.dto';
 import { CreateIndividualClientDto } from './dto/create-individual-client.dto';
 import { UpdateIndividualClientDto } from './dto/update-individual-client.dto';
 import { IndividualClientService } from './individual-client.service';
+import { IndividualClientResponseDto } from './dto/individual-client-response.dto';
 import { IndividualClient } from './individual-client.entity';
 
 @ApiTags('Individual-Client')
@@ -15,7 +15,7 @@ import { IndividualClient } from './individual-client.entity';
 export class IndividualClientController {
   constructor(private readonly individualClientService: IndividualClientService) {}
 
-  @ApiOperation({ summary: 'Obtención de cliente persona por id' })
+  @ApiOperation({ summary: 'Obtención de cliente persona por id del cliente' })
   @ApiParam({ name: 'id', description: 'ID del cliente' })
   @ApiResponse({ status: 200, description: 'Datos del cliente persona.', type: [IndividualClientResponseDto] })
   @Get(':id')
@@ -58,7 +58,7 @@ export class IndividualClientController {
   @ApiBody({ type: UpdateIndividualClientDto })
   @ApiParam({ name: 'id', description: 'ID del cliente persona a modificar' })
   @ApiResponse({ status: 200, description: 'Cliente persona modificado exitosamente.', type: IndividualClientResponseDto })
-  @Put(':id')
+  @Patch(':id')
   @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   async update(@Param('id') id: string, @Body() updateIndividualClientDto: UpdateIndividualClientDto): Promise<BaseResponse<null>> {

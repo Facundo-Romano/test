@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, InternalServerErrorException, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Client } from './client.entity';
@@ -9,6 +9,8 @@ import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/s
 import { ClientResponseDto } from './dto/client-response.dto';
 import { BaseResponse } from 'src/common/classes';
 import { UserRole } from '../users/user.entity';
+import { SearchClientDto } from './dto/search-client.dto';
+import { SearchClientResponseDto } from './dto/search-client-response.dto';
 
 @ApiTags('Client')
 @Controller('client')
@@ -29,6 +31,23 @@ export class ClientController {
     } catch (error) {
       console.error('Error al buscar clientes:', error);
       throw new InternalServerErrorException('Ocurrió un error inesperado al buscar clientes.');
+    }
+  }
+
+  @ApiOperation({ summary: 'Buscar cliente por nombre o CUIT' })
+  @ApiResponse({ status: 200, description: 'Clientes encontrados.', type: SearchClientResponseDto })
+  @Get('search')
+  async getByNameOrCuit(@Query() params: SearchClientDto): Promise<BaseResponse<SearchClientResponseDto>> {
+    try {
+      const response = await this.clientService.getByNameOrCuit(params);
+
+      return {
+        success: true,
+        data: response,
+      };
+    } catch (error) {
+      console.error('Error al buscar cliente por nombre o CUIT:', error);
+      throw new InternalServerErrorException('Ocurrió un error inesperado al buscar cliente por nombre o CUIT.');
     }
   }
   

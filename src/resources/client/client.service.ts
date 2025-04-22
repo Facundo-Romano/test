@@ -2,8 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Client, ClientStatus } from './client.entity';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { CreateClientDto } from './dto/create-client.dto';
+import { SearchClientDto } from './dto/search-client.dto';
 import { AxiosInstance } from 'axios';
 import { IA_BROKER_AXIOS_INSTANCE } from 'src/common/constants';
+import { SearchClientResponseDto } from './dto/search-client-response.dto';
 
 @Injectable()
 export class ClientService {
@@ -64,6 +66,21 @@ export class ClientService {
   async remove(id: string): Promise<void> {
     try {
       await this.aiBrokerApi.delete(`/Clientes/${id}`);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async getByNameOrCuit(params: SearchClientDto): Promise<SearchClientResponseDto> {
+    try {
+      const filteredParams = Object.fromEntries(
+        Object.entries(params).filter(([_, value]) => value !== undefined)
+      );
+      
+      const queryParams = new URLSearchParams(filteredParams as any).toString();
+      const apiResponse = await this.aiBrokerApi.get(`/Clientes/search?${queryParams}`);
+      
+      return apiResponse.data;
     } catch (e) {
       throw new Error(e);
     }

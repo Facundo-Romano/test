@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AxiosInstance } from 'axios';
 import { IA_BROKER_AXIOS_INSTANCE } from 'src/common/constants';
-import { IndividualClient } from './individual-client.entity';
 import { CreateIndividualClientDto } from './dto/create-individual-client.dto';
 import { UpdateIndividualClientDto } from './dto/update-individual-client.dto';
+import { IndividualClient } from './individual-client.entity';
 
 @Injectable()
 export class IndividualClientService {
@@ -11,9 +11,10 @@ export class IndividualClientService {
     @Inject(IA_BROKER_AXIOS_INSTANCE) private readonly aiBrokerApi: AxiosInstance,
   ) {}
 
-  async findById(id: string): Promise<IndividualClient> {
+  async findById(id: string): Promise<any> {
     try {
       const apiResponse = await this.aiBrokerApi.get(`/ClientesPersona/${id}`);
+      
       return apiResponse.data;
     } catch (e) {
       throw new Error(e);
@@ -23,6 +24,7 @@ export class IndividualClientService {
   async create(createClientDto: CreateIndividualClientDto): Promise<IndividualClient> {
     try {
       const apiResponse = await this.aiBrokerApi.post(`/ClientesPersona`, createClientDto);
+
       return apiResponse.data;
     } catch (e) {
       throw new Error(e);
